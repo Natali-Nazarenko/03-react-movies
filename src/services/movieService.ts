@@ -1,6 +1,10 @@
 import axios from "axios";
 import type { Movie } from "../components/types/movie";
 
+interface ApiResponse {
+    results: Movie[],
+}
+
 const myKey = import.meta.env.VITE_API_KEY;
 const url = 'https://api.themoviedb.org/3/search/movie';
 
@@ -17,6 +21,6 @@ const options = {
     },
 };
 
-    const { data } = await axios.get<{ results: Movie[] }>(url, options);
+    const { data } = await axios.get<ApiResponse>(url, options);
     return data.results;
 } 

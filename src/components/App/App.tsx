@@ -17,7 +17,7 @@ function App() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const [movies, setMovies] = useState<Movie[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
     const handleRequest = async (request: string) => {
         try {
@@ -32,16 +32,17 @@ function App() {
                 return;
             }
             setMovies(arrMovies);
-        } catch (error) {
-            console.error(error);
+        } catch {
             setIsError(true);
         } finally {
             setIsLoading(false);
         }
     };
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const openModal = (movie: Movie) => {
+        setSelectedMovie(movie);
+    };
+    const closeModal = () => setSelectedMovie(null);
 
     return (
         <>
@@ -49,7 +50,7 @@ function App() {
             {isLoading && <p className={css.text}>Loading movies, please wait...</p>}
             {isError && <p className={style.text}>There was an error, please try again...</p>}
             <MovieGrid onSelect={openModal} movies={movies} />
-            {isModalOpen && <MovieModal movie onClose={closeModal} />}
+            {selectedMovie && <MovieModal movie={selectedMovie} onClose={closeModal} />}
             <Toaster />
             {}
         </>
