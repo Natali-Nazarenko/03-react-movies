@@ -17,7 +17,7 @@ function MovieGrid({ onSelect, movies }: MovieGridProps) {
                             className={css.image}
                             onClick={() => onSelect(movie)}
                             src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                            alt="movie title"
+                            alt={movie.title}
                             loading="lazy"
                         />
                         <h2 className={css.title}>{movie.title}</h2>

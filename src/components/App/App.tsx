@@ -4,11 +4,10 @@ import { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import MovieGrid from '../MovieGrid/MovieGrid';
 import MovieModal from '../MovieModal/MovieModal';
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+
 import { fetchMovies } from '../../services/movieService';
-
-import css from '../Loader/Loader.module.css';
-import style from '../ErrorMessage/ErrorMessage.module.css';
-
 import type { Movie } from '../../types/movie';
 
 const notify = () => toast.error('No movies found for your request.');
@@ -47,8 +46,8 @@ function App() {
     return (
         <>
             <SearchBar onSubmit={handleRequest} />
-            {isLoading && <p className={css.text}>Loading movies, please wait...</p>}
-            {isError && <p className={style.text}>There was an error, please try again...</p>}
+            {isLoading && <Loader />}
+            {isError && <ErrorMessage />}
             <MovieGrid onSelect={openModal} movies={movies} />
             {selectedMovie && <MovieModal movie={selectedMovie} onClose={closeModal} />}
             <Toaster />

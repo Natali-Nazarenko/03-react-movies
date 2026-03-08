@@ -8,7 +8,7 @@ interface ApiResponse {
 const myKey = import.meta.env.VITE_API_KEY;
 const url = 'https://api.themoviedb.org/3/search/movie';
 
-export async function fetchMovies(request: string) {
+export async function fetchMovies(request: string):Promise<Movie[]> {
     
 const options = {
     method: 'GET',
