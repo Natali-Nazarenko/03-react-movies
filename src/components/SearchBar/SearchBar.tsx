@@ -4,11 +4,11 @@ import styles from './SearchBar.module.css';
 
 const notify = () => toast.error('Please enter your search query.');
 
-interface RequestFormProps {
+interface SearchBarProps {
     onSubmit: (value: string) => void;
 }
 
-function SearchBar({ onSubmit }: RequestFormProps) {
+function SearchBar({ onSubmit }: SearchBarProps) {
     const handleSubmit = (formData: FormData) => {
         const query = (formData.get('query') as string).trim();
 
