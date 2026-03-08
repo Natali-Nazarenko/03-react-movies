@@ -9,7 +9,7 @@ import { fetchMovies } from '../../services/movieService';
 import css from '../Loader/Loader.module.css';
 import style from '../ErrorMessage/ErrorMessage.module.css';
 
-import type { Movie } from '../types/movie';
+import type { Movie } from '../../types/movie';
 
 const notify = () => toast.error('No movies found for your request.');
 
