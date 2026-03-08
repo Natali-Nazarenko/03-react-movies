@@ -1,0 +1,22 @@
+import axios from "axios";
+import type { Movie } from "../components/types/movie";
+
+const myKey = import.meta.env.VITE_API_KEY;
+const url = 'https://api.themoviedb.org/3/search/movie';
+
+export async function fetchMovies(request: string) {
+    
+const options = {
+    method: 'GET',
+    params: {
+        query: request,
+    },
+    headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${myKey}`,
+    },
+};
+
+    const { data } = await axios.get<{ results: Movie[] }>(url, options);
+    return data.results;
+} 
